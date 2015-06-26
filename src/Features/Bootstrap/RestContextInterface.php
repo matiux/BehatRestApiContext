@@ -1,4 +1,4 @@
-<?php
+<?php namespace Matiux\Features\Bootstrap;
 
 interface RestContextInterface
 {

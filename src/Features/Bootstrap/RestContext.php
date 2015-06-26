@@ -1,4 +1,4 @@
-<?php
+<?php namespace Matiux\Features\Bootstrap;
 
 use Matiux\Types\String;
 
