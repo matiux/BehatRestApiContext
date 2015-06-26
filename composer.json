@@ -6,7 +6,7 @@
   "type": "library",
   "require": {
     "php": ">=5.4.0",
-    "matiux/types": "0.5",
+    "matiux/types": "0.*",
     "guzzlehttp/guzzle": "~5.0",
     "phpunit/phpunit": "~4.0",
     "behat/behat": "3.0.15"
