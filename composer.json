@@ -3,7 +3,7 @@
   "description": "A boilerplate to test Rest API with behat",
   "require": {
     "php": ">=5.4.0",
-    "matiux/type-utilities": "dev-master",
+    "matiux/types": "0.3",
     "guzzlehttp/guzzle": "~5.0",
     "phpunit/phpunit": "~4.0",
     "behat/behat": "3.0.15"
