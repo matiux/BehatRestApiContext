@@ -2,6 +2,8 @@
   "name": "matiux/behat-rest-api-context",
   "description": "A boilerplate to test Rest API with behat",
   "keywords":     ["BDD", "ScenarioBDD", "StoryBDD", "testing", "Behat"],
+  "license": "MIT",
+  "type": "library",
   "require": {
     "php": ">=5.4.0",
     "matiux/types": "0.5",
