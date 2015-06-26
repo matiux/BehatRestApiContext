@@ -10,6 +10,8 @@ use Behat\Behat\Tester\Exception\PendingException,
 
 use GuzzleHttp\Client;
 
+use PHPUnit_Framework_Assert;
+
 class RestContext implements Context, SnippetAcceptingContext, RestContextInterface
 {
     /**
