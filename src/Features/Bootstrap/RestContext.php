@@ -238,6 +238,20 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * Verifica il numero di elementi di un array
+     * And "configValues.mailgun" has "7" items
+     *
+     * @Then :arg1 has :arg2 items
+     */
+    public function hasItems($arg1, $number)
+    {
+        $path       = new String($arg1);
+        $array      = $path->pathToArray($this->body);
+
+        PHPUnit_Framework_Assert::assertTrue($number == count($array));
+    }
+
+    /**
      * @Then the response doesn't contains:
      */
     public function theResponseDoesnTContains(PyStringNode $strings)
