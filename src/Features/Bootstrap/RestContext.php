@@ -107,8 +107,10 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
 
             $value = new String($data['value']);
 
-            if ($value->contains('array,'))
+            if ($value->contains('array,')) {
+
                 $data['value'] = $this->handleArrayValue($data['value']);
+            }
 
             if (!strstr($data['field'], '.')) {
 
@@ -141,7 +143,19 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
                 array_push($prepared, is_numeric(current($value)) ? (int)current($value) : current($value));
             }
             else {
-                $prepared[$value[0]] = is_numeric($value[1]) ? (int)$value[1] : $value[1];
+
+                if (is_numeric($value[1])) {
+
+                    $prepared[$value[0]] = (int)$value[1];
+
+                } else if('[]' == $value[1]) {
+
+                    $prepared[$value[0]] = array();
+
+                } else {
+
+                    $prepared[$value[0]] = $value[1];
+                }
             }
         }
 
