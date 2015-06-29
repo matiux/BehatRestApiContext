@@ -207,6 +207,21 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * @Then :arg1 contains:
+     */
+    public function contains($arg1, PyStringNode $strings)
+    {
+        $path       = new String($arg1);
+        $array      = $path->pathToArray($this->body);
+        $strings    = $strings->getStrings();
+
+        foreach ($strings as $key) {
+
+            PHPUnit_Framework_Assert::assertArrayHasKey($key, $array, "$key doesn't exist");
+        }
+    }
+
+    /**
      * @Then the value of :what :operator :value
      */
     public function theValueOf($what, $operator, $value)
