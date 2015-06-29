@@ -57,6 +57,9 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * GET - Imposta l'endpoint della risorsa che voglio testare
+     * Given that I want to find a "/v1/SephirothMailConfigs/3"
+     *
      * @Given that I want to find a :resource
      */
     public function thatIWantToFindA($resource)
@@ -66,6 +69,12 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * POST - Imposta l'endpoint della risosta che voglio testare
+     * Given that I want to add a new "/v1/SiteUser" with values:
+     *   | field         | value                  |
+     *   | config_id     |                        |
+     *   | email         | prova@areariservata.it |
+     *
      * @Given that I want to add a new :resource with values:
      */
     public function thatIWantToAddANewWithValues($resource, TableNode $table)
@@ -76,6 +85,11 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * PATCH | PUT - Imposta l'endpoint della risosta che voglio testare
+     * Given that I want update an existing "/v1/SiteTwigCategories/7" by method "PATCH" with values:
+     *   | field | value               |
+     *   | name  | CategoriaModificata |
+     *
      * @Given that I want update an existing :resource by method :method with values:
      */
     public function thatIWantUpdateAnExistingByMethodWithValues($resource, $method, TableNode $table)
@@ -135,6 +149,9 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * Esegue la chiamata
+     * When I request a resource
+     *
      * @When I request a resource
      */
     public function iRequestAResource()
@@ -178,6 +195,9 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * Controlla lo status code del responso
+     * Then the response status code should be 404
+     *
      * @Then the response status code should be :arg1
      */
     public function theResponseStatusCodeShouldBe($responseStatus)
@@ -186,6 +206,9 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * Controlla il tipo del responso
+     * And the response type should be "application/json"
+     *
      * @Then the response type should be :arg1
      */
     public function theResponseTypeShouldBe($responseType)
@@ -194,6 +217,9 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * Verifica che il responso contenga determinati valori
+     * And the response contains:
+     *
      * @Then the response contains:
      */
     public function theResponseContains(PyStringNode $strings)
@@ -207,6 +233,9 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * Verifica che un array contenga determinati valori
+     * And each "configValues.mandrill" item contains:
+     *
      * @Then :arg1 contains:
      */
     public function contains($arg1, PyStringNode $strings)
@@ -222,6 +251,9 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * Controlla il valore di uno specifico campo
+     * And the value of "result" "=" "success"
+     *
      * @Then the value of :what :operator :value
      */
     public function theValueOf($what, $operator, $value)
@@ -252,6 +284,9 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * Controlla che il respondo non contega determinati campi
+     * And the response doesn't contains:
+     *
      * @Then the response doesn't contains:
      */
     public function theResponseDoesnTContains(PyStringNode $strings)
@@ -265,6 +300,9 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * Controllare che un elemento sia un array
+     * And "values" is a collection
+     *
      * @Then :arg1 is a collection
      */
     public function isACollection($arg1)
@@ -278,6 +316,8 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * Controlla che un elemento sia un aoggetto
+     *
      * @Then :arg1 is a object
      */
     public function isAObject($arg1)
@@ -289,6 +329,14 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * Controlla che ogni elemento di una collezione contenga determinati elementi
+     * And each "values" item contains:
+     *   """
+     *   id
+     *   name
+     *   email
+     *   """
+     *
      * @Then each :arg1 item contains:
      */
     public function eachItemContains($arg1, PyStringNode $strings)
@@ -309,6 +357,8 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * Cancella una risorsa
+     *
      * @Given that I want to delete :arg1:
      */
     public function thatIWantToDelete($arg1)
