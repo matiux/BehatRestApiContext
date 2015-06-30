@@ -58,7 +58,7 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
 
     /**
      * GET - Imposta l'endpoint della risorsa che voglio testare
-     * Given that I want to find a "/v1/SephirothMailConfigs/3"
+     * Given that I want to find a "/v1/Resource/3"
      *
      * @Given that I want to find a :resource
      */
@@ -70,7 +70,7 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
 
     /**
      * POST - Imposta l'endpoint della risosta che voglio testare
-     * Given that I want to add a new "/v1/SiteUser" with values:
+     * Given that I want to add a new "/v1/Resource" with values:
      *   | field         | value                  |
      *   | config_id     |                        |
      *   | email         | prova@areariservata.it |
@@ -85,8 +85,20 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
+     * DELETE - Cancella una risorsa
+     * Given that I want to delete "/v1/Resource/57":
+     *
+     * @Given that I want to delete :resource:
+     */
+    public function thatIWantToDelete($resource)
+    {
+        $this->requestMethod    = self::METHOD_DELETE;
+        $this->resource         = $resource;
+    }
+
+    /**
      * PATCH | PUT - Imposta l'endpoint della risosta che voglio testare
-     * Given that I want update an existing "/v1/SiteTwigCategories/7" by method "PATCH" with values:
+     * Given that I want update an existing "/v1/Resource/7" by method "PATCH" with values:
      *   | field | value               |
      *   | name  | CategoriaModificata |
      *
@@ -203,6 +215,9 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
             case 'POST':
                 $this->response = $this->client->post($this->resource, ['json' => $this->toSendData]);
                 break;
+            case 'DELETE':
+                $this->response = $this->client->delete($this->resource);
+                break;
         }
 
         $this->body = json_decode($this->response->getBody(), true);
@@ -231,7 +246,7 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
-     * Verifica che il responso contenga determinati valori
+     * Verifica che il responso contenga determinate chiavi
      * And the response contains:
      *
      * @Then the response contains:
@@ -247,7 +262,7 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
-     * Verifica che un array contenga determinati valori
+     * Verifica che un array contenga determinate chiavi
      * And each "configValues.mandrill" item contains:
      *
      * @Then :arg1 contains:
@@ -298,7 +313,7 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
-     * Controlla che il respondo non contega determinati campi
+     * Controlla che il responso non contega determinate chiavi
      * And the response doesn't contains:
      *
      * @Then the response doesn't contains:
@@ -371,12 +386,16 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
     }
 
     /**
-     * Cancella una risorsa
+     * Verifica se un array è vuoto
+     * And "data" is void
      *
-     * @Given that I want to delete :arg1:
+     * @Then :arg1 is empty
      */
-    public function thatIWantToDelete($arg1)
+    public function isEmpty($arg1)
     {
-        throw new PendingException();
+        $path       = new String($arg1);
+        $array      = $path->pathToArray($this->body);
+
+        PHPUnit_Framework_Assert::assertTrue(empty($array));
     }
 }
