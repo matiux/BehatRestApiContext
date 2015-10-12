@@ -46,13 +46,18 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
      */
     protected $toSendData = [];
 
-    public function __construct($baseUrl)
+    public function __construct($baseUrl, array $headers = [])
     {
         $this->baseApiUrl       = $baseUrl;
 
         $this->client           = new Client([
 
-            'base_url' => $this->baseApiUrl
+            'base_url' => $this->baseApiUrl,
+
+            'defaults' => [
+
+                'headers'   => $headers,
+            ],
         ]);
     }
 
