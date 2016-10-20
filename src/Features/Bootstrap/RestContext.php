@@ -209,16 +209,16 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
         switch($this->requestMethod) {
 
             case 'GET':
-                $this->response = $this->client->get($this->resource);
+                $this->response = $this->client->get($this->resource, ['cookies' => ['XDEBUG_SESSION_START' => 'PHPSTORM']]);
                 break;
             case 'PATCH':
-                $this->response = $this->client->patch($this->resource, ['json' => $this->toSendData]);
+                $this->response = $this->client->patch($this->resource, ['json' => $this->toSendDatai, 'cookies' => ['XDEBUG_SESSION' => 'PHPSTORM']]);
                 break;
             case 'PUT':
-                $this->response = $this->client->put($this->resource, ['json' => $this->toSendData]);
+                $this->response = $this->client->put($this->resource, ['json' => $this->toSendData, 'cookies' => ['XDEBUG_SESSION' => 'PHPSTORM']]);
                 break;
             case 'POST':
-                $this->response = $this->client->post($this->resource, ['json' => $this->toSendData]);
+                $this->response = $this->client->post($this->resource, ['json' => $this->toSendData, 'cookies' => ['XDEBUG_SESSION' => 'PHPSTORM']]);
                 break;
             case 'DELETE':
                 $this->response = $this->client->delete($this->resource);
