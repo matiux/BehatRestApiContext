@@ -135,7 +135,7 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
 
             } else {
 
-                $field      = new String($data['field']);
+                $field      = new Str($data['field']);
                 $postArray  = $field->insertInArrayByPath($postArray, $data['value'], true);
             }
         }
@@ -274,7 +274,7 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
      */
     public function contains($arg1, PyStringNode $strings)
     {
-        $path       = new String($arg1);
+        $path       = new Str($arg1);
         $array      = $path->pathToArray($this->body);
         $strings    = $strings->getStrings();
 
@@ -292,7 +292,7 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
      */
     public function theValueOf($what, $operator, $value)
     {
-        $path           = new String($what);
+        $path           = new Str($what);
         $responseValue  = $path->pathToArray($this->body);
 
         switch ($operator) {
@@ -311,7 +311,7 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
      */
     public function hasItems($arg1, $number)
     {
-        $path       = new String($arg1);
+        $path       = new Str($arg1);
         $array      = $path->pathToArray($this->body);
 
         PHPUnit_Framework_Assert::assertTrue($number == count($array));
@@ -341,7 +341,7 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
      */
     public function isACollection($arg1)
     {
-        $path       = new String($arg1);
+        $path       = new Str($arg1);
         $array      = $path->pathToArray($this->body);
 
         PHPUnit_Framework_Assert::assertTrue(is_array($array));
@@ -356,7 +356,7 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
      */
     public function isAObject($arg1)
     {
-        $path       = new String($arg1);
+        $path       = new Str($arg1);
         $array      = $path->pathToArray($this->body);
 
         PHPUnit_Framework_Assert::assertTrue(is_array($array));
@@ -375,7 +375,7 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
      */
     public function eachItemContains($arg1, PyStringNode $strings)
     {
-        $path       = new String($arg1);
+        $path       = new Str($arg1);
         $strings    = $strings->getStrings();
         $array      = $path->pathToArray($this->body);
 
@@ -398,7 +398,7 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
      */
     public function isEmpty($arg1)
     {
-        $path       = new String($arg1);
+        $path       = new Str($arg1);
         $array      = $path->pathToArray($this->body);
 
         PHPUnit_Framework_Assert::assertTrue(empty($array));
