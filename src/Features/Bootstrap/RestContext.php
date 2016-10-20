@@ -1,6 +1,6 @@
 <?php namespace Matiux\Features\Bootstrap;
 
-use Matiux\Types\String;
+use Matiux\Types\Str;
 
 use Behat\Behat\Tester\Exception\PendingException,
     Behat\Behat\Context\Context,
