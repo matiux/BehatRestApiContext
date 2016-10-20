@@ -122,7 +122,7 @@ class RestContext implements Context, SnippetAcceptingContext, RestContextInterf
 
         foreach ($toSendData as $index => $data) {
 
-            $value = new String($data['value']);
+            $value = new Str($data['value']);
 
             if ($value->contains('array,')) {
 
